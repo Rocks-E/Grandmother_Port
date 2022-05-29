@@ -1,0 +1,2 @@
+/// @description fadeOut()
+self.fadeOut();

@@ -32,5 +32,5 @@ function startLongEnding() {
 	var transitionBackdrop = instance_create_depth(0, 0, -1000, oPhotoBackdrop);
 	transitionBackdrop.PhotoBackdrop(global.LEAVING_15, noone, global.PHOTO_FADE_IN_DURATION);
 	transitionBackdrop.added();
-	alarm[0] = global.PHOTO_FADE_IN_DURATION * room_speed;
+	alarm[2] = global.PHOTO_FADE_IN_DURATION * room_speed;
 }

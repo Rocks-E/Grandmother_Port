@@ -1,4 +1,4 @@
-if(self.tweenActive) {
+if(self.active) {
 	
 	self.framesElapsed++;
 	self.timeScale = self.framesElapsed / self.targetTime;
@@ -9,7 +9,7 @@ if(self.tweenActive) {
 		self.tweenFinish = true;
 	}
 	
-	variable_instance_set(self.objId, self.varName, self.startVal + self.range * self.timeScale);
+	self.currentValue = self.startVal + self.range * self.timeScale;
 	
 	if(self.tweenFinish) {
 		self.finish();

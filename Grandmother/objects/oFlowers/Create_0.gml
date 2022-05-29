@@ -19,8 +19,7 @@ function added(){
 }
 
 function fadeIn(_duration = 3){
-	self.fadeTween = instance_create_depth(0,0,0,oNumTween);
-	self.fadeTween.NumTween(self.id, true);
-	self.fadeTween.tween("image_alpha", 1, self.fadeInDuration * room_speed);
+	self.fadeTween = instance_create_depth(0, 0, 0, oColorTween);
+	self.fadeTween.ColorTween();
+	self.fadeTween.tween(_duration * room_speed, global.WHITE, global.WHITE, 0, 1);
 }
-

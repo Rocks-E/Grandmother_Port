@@ -1,27 +1,26 @@
 // Inherit the parent event
 event_inherited();
 
+//_start
 startVal = 0;
+//_range
 range = 0;
 
-objId = noone;
-varName = "";
+//value
+currentValue = 0;
 
 /*
 _id -> [ID] Instance ID of whichever object has the variable to be tweened
-[_destroyOnFinish] -> [Bool] Determines whether the tween object should be destroyed on finish
 [_callback] -> [Function] Callback function to run once tween is complete [NOTE: This MUST be specified using method(id, func)]
+[_type] -> [Int] Determines behavior of the tween after completion (0: persist, 1: loop, 2: remove)
 
-Ex: self.fadeTween = NumTween(self.id, true, method(self.id, self.fadeInCallback));
+Ex: self.fadeTween = NumTween(self.id, method(self.id, self.fadeInCallback), 2);
 This will prepare the object to run a tween.
 The tween() function is used to set up the value to tween and to perform the actual tween itself.
 On completion, the parent object will call the function "fadeInCallback".
 */
-function NumTween(_id, _destroyOnFinish = true, _callback = noone) {
-	self.objId = _id;
-	self.targetTime = 0;
-	self.callbackFunction = _callback;
-	self.destroyOnFinish = _destroyOnFinish; 
+function NumTween(_callback = noone, _type = 0) {
+	self.Tween(0, _type, _callback);
 }
 
 /*
@@ -37,14 +36,11 @@ Ex: self.fadeTween.tween("image_alpha", 1, 4 * room_speed, method(undefined, bou
 This will fade the image in from the current alpha value to 1 (full opacity) over 4 seconds.
 It will be eased in using the bounceIn() function (defined in scr_Ease and found in net.flashpunk.utils.Ease)
 */
-function tween(_var, _toValue, _duration, _easeFunction = noone) {
+function tween(_fromValue, _toValue, _duration, _easeFunction = noone) {
 	
-	var initialVal = variable_instance_get(self.objId, _var);
+	self.startValue = self.currentValue = _fromValue;
 	
-	self.varName = _var;
-	
-	self.startVal = initialVal;
-	self.range = _toValue - initialVal;
+	self.range = _toValue - self.currentValue;
 	self.targetTime = _duration;
 	self.easeFunction = _easeFunction;
 	self.start();

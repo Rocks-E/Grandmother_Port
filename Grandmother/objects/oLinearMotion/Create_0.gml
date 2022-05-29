@@ -1,21 +1,19 @@
 // Inherit the parent event
 event_inherited();
 
+//_fromX
 fromX = 0;
+//_fromY
 fromY = 0;
+//_moveX
 moveX = 0;
+//_moveY
 moveY = 0;
+//_distance
 dist = -1;
 
-objId = noone;
-
-function LinearMotion(_id, _destroyOnFinish = true, _callback = noone) {
-	
-	self.objId = _id;
-	self.targetTime = 0;
-	self.callbackFunction = _callback;
-	self.destroyOnFinish = _destroyOnFinish;
-	
+function LinearMotion(_callback = noone, _type = 0) {
+	self.Tween(0, _type, _callback);
 }
 
 function setMotion(_fromX, _fromY, _toX, _toY, _duration, _easeFunction) {

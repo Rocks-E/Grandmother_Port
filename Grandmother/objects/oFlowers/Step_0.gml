@@ -1,8 +1,3 @@
-
-
-
-//override public function update():void
-//		{
-//			if (fadeTween && shouldFadeIn)
-//				image.alpha = fadeTween.alpha;
-//		}
+if(instance_exists(self.fadeTween) && self.shouldFadeIn) {
+	self.image_alpha = self.fadeTween.image_alpha;	
+}

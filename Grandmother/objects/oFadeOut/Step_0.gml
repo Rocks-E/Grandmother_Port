@@ -1,0 +1,1 @@
+self.image_alpha = self._alphaTween.image_alpha;

@@ -1,0 +1,1 @@
+if(instance_exists(self.fadeTween)) self.image_alpha = self.fadeTween.image_alpha;

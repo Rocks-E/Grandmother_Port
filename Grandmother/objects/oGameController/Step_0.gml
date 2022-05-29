@@ -9,11 +9,10 @@ if(instance_exists(global.mouseController)) {
 		global.mouseController.destroy();
 		var endFade = instance_create_depth(0, 0, 0, oTween);
 		if(global.LONG_ENDING) {
-			endFade.Tween((global.WAIT_TO_FADE - 1) * room_speed, true, method(self.id, startLongEnding));
+			alarm[0] = (global.WAIT_TO_FADE - global.PHOTO_FADE_IN_DURATION) * room_speed;
 		}
 		else {
-			endFade.Tween(global.WAIT_TO_FADE * room_speed, true, method(self.id, fadeOut));	
+			alarm[1] = global.WAIT_TO_FADE * room_speed;
 		}
-		endFade.start();
 	}
 }

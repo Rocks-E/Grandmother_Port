@@ -1,3 +1,6 @@
+if(instance_exists(self.alphaTween))
+	self.image_alpha = self.alphaTween.image_alpha;
+
 if(mouse_check_button(mb_left))
 	lastPressCounter = 0;
 else

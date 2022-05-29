@@ -6,12 +6,12 @@ function added(){
   // Mouse.hide();
 }
 
-function fadeOut(duration){
+function fadeOut(_duration) {
 	alphaTween = instance_create_depth(0, 0, 0, oColorTween);
-	alphaTween.ColorTween(self.id, true, method(self.id, self.destroy));
-	alphaTween.tween(duration, global.WHITE, global.WHITE, 1, 0);
+	alphaTween.ColorTween(method(self.id, self.destroy));
+	alphaTween.tween(_duration, global.WHITE, global.WHITE, 1, 0);
 }
 
-function destroy(){
+function destroy() {
 	instance_destroy(self.id);
 }

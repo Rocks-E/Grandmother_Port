@@ -16,7 +16,7 @@ function Bucket(_x = 0, _y = 0){
 	self.bucketFront.BucketFront(global.BUCKET_FRONT);
 	
 	self.motionTween = instance_create_depth(0, 0, 0, oLinearMotion);
-	self.motionTween.LinearMotion(self.id, false);
+	self.motionTween.LinearMotion(method(self.id, motionComplete));
 }
 
 function added(){
@@ -28,4 +28,8 @@ function added(){
 function drop() {
 	self.curSndEnter = audio_play_sound_on(self.sndEnterEmitter, self.sndEnter, false, 1);
 	self.motionTween.setMotion(self.x, self.y, self.x, room_height + 20, 3 * room_speed, method(undefined, quadIn));
+}
+
+function motionComplete() {
+	show_debug_message("bucket motion complete");	
 }

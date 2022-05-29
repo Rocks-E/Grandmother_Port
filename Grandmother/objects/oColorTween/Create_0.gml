@@ -1,34 +1,43 @@
 // Inherit the parent event
 event_inherited();
 
-objId = noone;
-
+//_r
 red = 0;
+//_g
 green = 0;
+//_b
 blue = 0;
+//_startA
 startAlpha = 0;
+//_startR
 startRed = 0;
+//_startG
 startGreen = 0;
+//_startB
 startBlue = 0;
+//_rangeA
 rangeAlpha = 0;
+//_rangeR
 rangeRed = 0;
+//_rangeG
 rangeGreen = 0;
+//_rangeB
 rangeBlue = 0;
 
-ALPHA = "image_alpha";
-COLOR = "image_blend";
+//alpha
+image_alpha = 1.0;
+//color
+image_blend = 0;
 
-function ColorTween(_objId, _destroyOnFinish = true, _callback = noone) {
-	self.objId = _objId;
-	self.targetTime = 0;
-	self.callbackFunction = _callback;
-	self.destroyOnFinish = _destroyOnFinish;
+function ColorTween(_callback = noone, _type = 0) {
+	self.Tween(0, _type, _callback);
 }
 
 function tween(_duration, _fromColor, _toColor, _fromAlpha = 1, _toAlpha = 1, _easeFunction = noone) {
 
-	_fromColor = getRGB(_fromColor) & 0xFFFFFF;
-	_toColor = getRGB(_toColor) & 0xFFFFFF;
+	//Remove alpha component
+	_fromColor &= 0xFFFFFF;
+	_toColor &= 0xFFFFFF;
 	self.red = _fromColor >> 16 & 0xFF;
 	self.green = _fromColor >> 8 & 0xFF;
 	self.blue = _fromColor & 0xFF;
@@ -39,8 +48,8 @@ function tween(_duration, _fromColor, _toColor, _fromAlpha = 1, _toAlpha = 1, _e
 	self.rangeGreen = ((_toColor >> 8 & 0xFF) / 255) - self.startGreen;
 	self.rangeBlue = ((_toColor & 0xFF) / 255) - self.startBlue;
 	self.startAlpha = _fromAlpha;
-	variable_instance_set(self.objId, self.ALPHA, _fromAlpha);
-	variable_instance_set(self.objId, self.COLOR, numColor(_fromColor));
+	self.image_alpha = _fromAlpha;
+	self.image_blend = _fromColor;
 	self.rangeAlpha = _toAlpha - _fromAlpha;
 	self.targetTime = _duration;
 	self.easeFunction = _easeFunction;

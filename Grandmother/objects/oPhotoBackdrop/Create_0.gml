@@ -8,7 +8,7 @@ curSound = noone; //Currently playing sound
 fadeInDuration = 0;
 fadeOutDuration = 0;
 fadeInComplete = false;
-fadeTween = noone; //oNumTween
+fadeTween = noone; //oColorTween
 
 function PhotoBackdrop(_backdropSource = noone, _soundSource = noone, _fadeInDuration = 3, _fadeOutDuration = 3, _clickMaskSource = noone) {
 	//Assigned as sprite index later
@@ -29,19 +29,24 @@ function added() {
 	//ClickMask added during constructor
 	//if (clickMask) FP.world.add(clickMask);
 	if(self.fadeInDuration > 0) {
+		show_debug_message("Fade");
 		self.image_alpha = 0;
-		self.fadeTween = instance_create_depth(0,0,0,oNumTween);
-		self.fadeTween.NumTween(self.id, true, method(self.id, self.fadeInCallback));
+		self.fadeTween = instance_create_depth(0, 0, 0, oColorTween);
 		self.fadeIn();
 	}
 	else {
+		show_debug_message("No fade");
 		self.image_alpha = 1;
+		self.fadeTween = instance_create_depth(0, 0, 0, oColorTween);
+		self.fadeTween.ColorTween();
+		self.fadeTween.image_alpha = 1;
 	}
 }
 
 function fadeIn() {
 	if(noone != self.sound) self.curSound = audio_play_sound_on(self.soundEmitter, self.sound, false, 0);
-	self.fadeTween.tween("image_alpha", 1, self.fadeInDuration);
+	self.fadeTween.ColorTween(method(self.id, self.fadeInCallback));
+	self.fadeTween.tween(self.fadeInDuration, global.WHITE, global.WHITE, 0, 1);
 }
 
 function fadeInCallback() {
@@ -50,12 +55,12 @@ function fadeInCallback() {
 
 function fadeOut() {
 	if(self.fadeOutDuration > 0) {
-		self.fadeTween = instance_create_depth(0, 0, 0, oNumTween);
-		self.fadeTween.NumTween(self.id, true, method(self.id, destroy));
-		self.fadeTween.tween("image_alpha", 0, self.fadeOutDuration);
+		self.fadeTween = instance_create_depth(0, 0, 0, oColorTween);
+		self.fadeTween.ColorTween(method(self.id, destroy));
+		self.fadeTween.tween(self.fadeOutDuration, global.WHITE, global.WHITE, self.image_alpha, 0);
 	}
 	else {
-		instance_destroy(self.id);	
+		self.destroy();
 	}
 }
 
