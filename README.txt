@@ -15,7 +15,7 @@ https://gms.yoyogames.com/GameMakerStudio-Installer-2022.1.1.610.exe
 
 See https://gms.yoyogames.com/ReleaseNotes.html
 
-GameMaker Studio port by Jordan Magnuson, Jeffry Robbins, and Matthew Ismay.
+GameMaker Studio port by Jordan Magnuson, Roxy Robbins, and Matthew Ismay.
 
 
 ------------------------------------------------------------------------
@@ -66,7 +66,7 @@ Tom Sauter
 Alex Snyder
 And my lovely wife, Marisa
 
-To Jeffry Robbins and Matthew Ismay for doing a great job on the
+To Roxy Robbins and Matthew Ismay for doing a great job on the
 GameMaker port.
 
 
